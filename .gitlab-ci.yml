@@ -1,12 +1,12 @@
 image: node:latest
 
-stages: test
+stages: 
+    - test
 
 test:
     stage: test
     before_script:
-		- cd frontend
-		- yarn
-	script:
+        - cd frontend
+        - yarn
+    script:
         - yarn test
-
