@@ -1,17 +1,21 @@
 stages: 
     - frontend-build
     - frontend-test
+    - frontend-deploy
+    - backend-build
+    - backend-test
+    - backend-deploy
     
-build:
+frontend-build:
     image: node:latest
     stage: frontend-build
     before_script:
         - cd frontend
-        - yarn
+        - npm install
     script:
-        - yarn build
+        - npm build
 
-test:
+frontend-test:
     image: node:latest
     stage: frontend-test
     before_script:
