@@ -23,3 +23,22 @@ frontend-test:
         - yarn
     script:
         - yarn test
+
+backend-build:
+    image: node:latest
+    stage: backend-build
+    before_script:
+        - cd backend
+        - npm install
+    script:
+        - npm run build
+
+backend-test:
+    image: node:latest
+    stage: backend-test
+    before_script:
+        - cd backend
+        - npm install
+    script:
+        - npm run unittest
+        
