@@ -60,7 +60,7 @@ backend-deploy:
     services:
         - docker:dind
     before_script:
-        - cd frontend
+        - cd backend
         - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_TOKEN
     script:
         - docker build --pull -t $CI_REGISTRY_IMAGE_BACKEND .
