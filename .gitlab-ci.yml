@@ -41,4 +41,16 @@ backend-test:
         - npm install
     script:
         - npm run unittest
+
+frontend-deploy:
+    image: docker:stable
+    stage: frontend-deploy
+    services:
+        - docker:dind
+    before_script:
+        - cd frontend
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_TOKEN
+    script:
+        - docker build --pull -t $CI_REGISTRY_IMAGE .
+        - docker push $CI_REGISTRY_IMAGE
         
