@@ -51,6 +51,18 @@ frontend-deploy:
         - cd frontend
         - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_TOKEN
     script:
-        - docker build --pull -t $CI_REGISTRY_IMAGE .
-        - docker push $CI_REGISTRY_IMAGE
-        
+        - docker build --pull -t $CI_REGISTRY_IMAGE_FRONTEND .
+        - docker push $CI_REGISTRY_IMAGE_FRONTEND
+
+backend-deploy:
+    image: docker:stable
+    stage: backend-deploy
+    services:
+        - docker:dind
+    before_script:
+        - cd frontend
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_TOKEN
+    script:
+        - docker build --pull -t $CI_REGISTRY_IMAGE_BACKEND .
+        - docker push $CI_REGISTRY_IMAGE_BACKEND
+
